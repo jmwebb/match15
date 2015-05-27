@@ -1,0 +1,54 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+  content: "";
+  padding: 0;
+}
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+.main-container {
+  margin: 10px 30px;
+}
+
+.logo {
+  height: 100%;
+}
+
+.submit-button {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.field {
+  margin: 20px 0;
+}
+
+.field .ng-invalid-at-stanford {
+  box-shadow: 0px 0px 3px #d9534f !important;
+  border-color: #d9534f !important;
+}
