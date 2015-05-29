@@ -6,6 +6,7 @@ angular.module('myApp').directive('doYouEvenGoHere', function() {
     return {
         require : 'ngModel',
         link : function($scope, element, attrs, ngModel) {
+            console.log(ngModel)
             ngModel.$validators.atStanford = function(value) {
 
                 if (typeof(value) == "undefined"
@@ -29,8 +30,6 @@ angular.module('myApp').directive('doYouEvenGoHere', function() {
                         }
                     });
                 }
-
-
 
                 return isValid;
             };
