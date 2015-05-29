@@ -9,33 +9,34 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', function($scope, $http, importNames) {
+.controller('View1Ctrl', function($scope, $http, importNames, FirebaseServer) {
 
-      $scope.namesEmails = [];
   $scope.first_choice = "";
 
-  $scope.data = "";
-
-  //  '1':"",
-  //  '2':"",
-  //  '3':"",
-  //  '4':"",
-  //  '5':"",
-  //  '6':"",
-  //  '7':"",
-  //  '8':"",
-  //  '9':"",
-  //  '10':"",
-  //  '11':"",
-  //  '12':"",
-  //  '13':"",
-  //  '14':"",
-  //  '15':""
-  //};
 
 
+  $scope.choices = FirebaseServer.all;
 
-  $scope.options = ["1","2","3","4","5"];
+  //$scope.choice1 = {};
+
+  $scope.submitChoices = function () {
+    FirebaseServer.create($scope.choice1).then(function () {
+      console.log(FirebaseServer.all);
+    });
+  };
+
+  $scope.deletePost = function (choice) {
+    FirebaseServer.delete(choice);
+  };
+
+  $scope.submit = function() {
+    console.log(FirebaseServer.all);
+  };
+
+
+
+
+
   importNames.get().success(function(response) {
     var name_emailJSON = response;
     var names_emails = [];
@@ -95,9 +96,7 @@ angular.module('myApp.view1', ['ngRoute'])
       return arr.join(" ");
   };
 
-  $scope.submit1 = function() {
-    console.log($scope.choices);
-  };
+
 
   //$scope.startsWith = function(state, viewValue) {
   //  //return state.substr(0, viewValue.length).toLowerCase() == viewValue.toLowerCase();
