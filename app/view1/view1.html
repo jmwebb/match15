@@ -14,10 +14,16 @@
         <div class="alert alert-danger" role="alert" ng-if="choiceForm.choice0.$error.atStanford">
             {{choiceForm.choice0.$viewValue}} doesnt even go here yo
         </div>
-        <input class="form-control" name="choice0"  ng-model="data[0]"
+        <input class="form-control" name="choice0"  ng-model="first_choice" autocomplete="off"
                placeholder="future friend" ng-model-options="{updateOn: 'default blur', debounce: { default: 900, blur: 0 }}"
-               typeahead-wait-ms="400" type="text" typeahead="name as name.name for name in namesEmails | filter:$viewValue | limitTo:8" do-you-even-go-here>
+                typeahead-wait-ms="400" type="text" typeahead="name as name.name for name in namesEmails | filter:$viewValue | limitTo:8" do-you-even-go-here>
+
     </div>
+
+
+
+
+
     <div class="field">
         <input class="form-control" name="choice1" type="text" ng-model="data[1]"  placeholder="future partner" typeahead-wait-ms="400" typeahead="name for name in options | filter:$viewValue | limitTo:8">
     </div>

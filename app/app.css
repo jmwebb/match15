@@ -52,3 +52,7 @@
   box-shadow: 0px 0px 3px #d9534f !important;
   border-color: #d9534f !important;
 }
+
+.subheader {
+  text-align: center;
+}
