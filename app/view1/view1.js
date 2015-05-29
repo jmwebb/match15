@@ -11,26 +11,31 @@ angular.module('myApp.view1', ['ngRoute'])
 
 .controller('View1Ctrl', function($scope, $http, importNames) {
 
-  $scope.data = {
-    '1':"",
-    '2':"",
-    '3':"",
-    '4':"",
-    '5':"",
-    '6':"",
-    '7':"",
-    '8':"",
-    '9':"",
-    '10':"",
-    '11':"",
-    '12':"",
-    '13':"",
-    '14':"",
-    '15':""
-  };
+      $scope.namesEmails = [];
+  $scope.first_choice = "";
 
-  $scope.options = ['jared', 'maria is smelly', 'santi'];
+  $scope.data = "";
 
+  //  '1':"",
+  //  '2':"",
+  //  '3':"",
+  //  '4':"",
+  //  '5':"",
+  //  '6':"",
+  //  '7':"",
+  //  '8':"",
+  //  '9':"",
+  //  '10':"",
+  //  '11':"",
+  //  '12':"",
+  //  '13':"",
+  //  '14':"",
+  //  '15':""
+  //};
+
+
+
+  $scope.options = ["1","2","3","4","5"];
   importNames.get().success(function(response) {
     var name_emailJSON = response;
     var names_emails = [];
@@ -76,7 +81,7 @@ angular.module('myApp.view1', ['ngRoute'])
 
     suids = suid_array.join(',');
     var noSUID = namesWithoutSUIDS.join(', ');
-    $scope.namesEmails =  names_emails;
+    $scope.namesEmails = names_emails;
   });
 
   $scope.capitalizeEveryWord = function(string) {
@@ -90,69 +95,14 @@ angular.module('myApp.view1', ['ngRoute'])
       return arr.join(" ");
   };
 
-
-
   $scope.submit1 = function() {
     console.log($scope.choices);
-    //$httpProvider.defaults.headers.post = {'Content-Type': 'application/x-www-form-urlencoded'};
-    //$http.get('names_emails.json')
-    //    .success(function(names_emailJSON) {
-    //      console.log(names_emailJSON);
-    //    })
-    //    .error(function (error) {
-    //      console.log(error);
-    //    });
-
   };
 
   //$scope.startsWith = function(state, viewValue) {
   //  //return state.substr(0, viewValue.length).toLowerCase() == viewValue.toLowerCase();
   //};
 
-
-
-
-
-
-    //
-    //  $scope.result = 'hidden'
-    //  $scope.resultMessage;
-    //  $scope.formData; //formData is an object holding the name, email, subject, and message
-    //  $scope.submitButtonDisabled = false;
-    //  $scope.submitted = false; //used so that form errors are shown only after the form has been submitted
-    //
-    //
-    //  $scope.submit = function() {
-    //$scope.submitted = true;
-    //$scope.submitButtonDisabled = true;
-    //    //var data = $.param($scope.formData);
-    //    $http.post('test.php' );
-    //
-    ////if (contactform.$valid) {
-    //  $http({
-    //    method  : 'POST',
-    //    //url     : window.location.href +'contact-form.php',
-    //    url     : 'contact-form.php',
-    //    data    : $.param($scope.formData),  //param method from jQuery
-    //    headers: {'Content-Type': 'application/x-www-form-urlencoded'} //set the headers so angular passing info as form data (not request payload)
-    //  }).success(function(data){
-    //    console.log(data);
-    //    if (data.success) { //success comes from the return json object
-    //      $scope.submitButtonDisabled = true;
-    //      $scope.resultMessage = data.message;
-    //      $scope.result='bg-success';
-    //    } else {
-    //      $scope.submitButtonDisabled = false;
-    //      $scope.resultMessage = data.message;
-    //      $scope.result='bg-danger';
-    //    }
-    //  });
-    //} else {
-    //  $scope.submitButtonDisabled = false;
-    //  $scope.resultMessage = 'Failed :( Please fill out all the fields.';
-    //  $scope.result='bg-danger';
-    //}
-  //};
 
 
 

@@ -4,12 +4,15 @@
 angular.module('myApp', [
   'ui.bootstrap',
   'ngRoute',
-  'myApp.view1',
-  'myApp.version'
+  'myApp.view1'
+    //'myApp.validators'
 ])
     .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
-}])
+      $routeProvider
+          .otherwise({
+            redirectTo: '/view1'
+          });
+  }])
     .factory('importNames', function($http) {
       var promise;
       var jsondata = {
@@ -50,4 +53,12 @@ angular.module('myApp', [
         }
       };
       return jsondata;
-    });
+    })
+
+
+
+;
+
+//if('production' == app.get('env')) {
+//  app.use(express.static(path.join(__dirname, '/dist')));
+//}
