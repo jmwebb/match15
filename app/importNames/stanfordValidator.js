@@ -31,8 +31,6 @@ angular.module('myApp').directive('doYouEvenGoHere', function() {
                     });
                 }
 
-
-
                 return isValid;
             };
         }
