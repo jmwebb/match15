@@ -1,36 +1,54 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute'])
-
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view1', {
-    templateUrl: 'view1/view1.html',
-    controller: 'View1Ctrl'
-  });
-}])
-
-.controller('View1Ctrl', function($scope, $http, importNames, FirebaseServer) {
-
-  $scope.first_choice = "";
+angular.module('myApp')
+//    .view1', ['ngRoute', 'firebase'])
+//
 
 
+.controller('View1Ctrl', function($scope, $http, $firebaseObject, $firebaseAuth, importNames, FIREBASE_URL, $modal) {
 
-  $scope.choices = FirebaseServer.all;
+        $scope.showRules = false;
 
-  //$scope.choice1 = {};
+
+      //
+      //var ref = new Firebase(FIREBASE_URL);
+      //$scope.authObj = $firebaseAuth(ref);
+      //
+      //
+      //$scope.authObj.$authWithOAuthPopup("google").then(function(authData) {
+      //  console.log("Logged in as:", authData.uid);
+      //}).catch(function(error) {
+      //  console.error("Authentication failed:", error);
+      //});
+      //
+
+
+
+
+      var email = 'maria';
+      var user_ref = new Firebase(FIREBASE_URL + '/' + email);
+      $scope.user = $firebaseObject(user_ref);
+      $scope.user.$loaded().then(function() {
+        if ($scope.user['submited']) {
+          $scope.alreadySubmitted = true;
+        } else {
+          $scope.alreadySubmitted = false;
+        }
+      });
+
+
+      $scope.choicesLust = ['choice0', 'choice1', 'choice2', 'choice3', 'choice4', 'choice5', 'choice6', 'choice7', 'choice8', 'choice9'];
+
+      $scope.choicesFriends = [ 'choice10', 'choice11', 'choice12', 'choice13', 'choice14'];
+
 
   $scope.submitChoices = function () {
-    FirebaseServer.create($scope.choice1).then(function () {
-      console.log(FirebaseServer.all);
+    $scope.user['submited'] = true;
+    $scope.user.$save().then(function(ref) {
+      //ref.key() === $scope.user.$id; // true
+    }, function(error) {
+      console.log("Error:", error);
     });
-  };
-
-  $scope.deletePost = function (choice) {
-    FirebaseServer.delete(choice);
-  };
-
-  $scope.submit = function() {
-    console.log(FirebaseServer.all);
   };
 
 
@@ -98,12 +116,20 @@ angular.module('myApp.view1', ['ngRoute'])
 
 
 
-  //$scope.startsWith = function(state, viewValue) {
-  //  //return state.substr(0, viewValue.length).toLowerCase() == viewValue.toLowerCase();
-  //};
+  $scope.startsWith = function(string, viewValue) {
+    if (typeof(string) == 'string') {
+      var words = string.split(" ");
 
+      var startsWith = false;
+      words.forEach(function(word) {
+        if (word.substr(0, viewValue.length).toLowerCase() == viewValue.toLowerCase()) {
+          startsWith = true;
+        }
+      });
 
+      return startsWith;
+    }
 
-
+  };
 
 });

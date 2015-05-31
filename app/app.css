@@ -53,6 +53,41 @@
   border-color: #d9534f !important;
 }
 
+.header {
+  text-align: center;
+}
 .subheader {
   text-align: center;
+}
+
+.lust.form-control {
+  background-color: #FFB3DE;
+  color: white;
+  font-weight: bold;
+}
+
+.friends.form-control {
+  background-color: #87CEFA;
+  color: white;
+  font-weight: bold;
+}
+
+::-webkit-input-placeholder {
+  color: whitesmoke;
+  font-weight: normal;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  color: whitesmoke;
+  font-weight: normal;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  color: whitesmoke;
+  font-weight: normal;
+}
+
+:-ms-input-placeholder {
+  color: whitesmoke;
+  font-weight: normal;
 }

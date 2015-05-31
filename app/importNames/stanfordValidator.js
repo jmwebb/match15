@@ -6,7 +6,6 @@ angular.module('myApp').directive('doYouEvenGoHere', function() {
     return {
         require : 'ngModel',
         link : function($scope, element, attrs, ngModel) {
-            console.log(ngModel)
             ngModel.$validators.atStanford = function(value) {
 
                 if (typeof(value) == "undefined"
@@ -15,7 +14,8 @@ angular.module('myApp').directive('doYouEvenGoHere', function() {
                 }
                 var isValid = false;
 
-                if(value.name) {        //typeform option chosen, object submitted
+                if(typeof(value.name) !== 'undefined') {        //typeform option chosen, object submitted
+
                     $scope.namesEmails.forEach(function(name_email) {
                         var name =  value.name.toLowerCase();
                         if (name_email.name.toLowerCase().indexOf(name) > -1) {

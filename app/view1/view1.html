@@ -3,26 +3,54 @@
     Match15: Seniors looking to make up for lost time
 </h1>
 
-<h4>
-    Choose up to 15 seniors you want to connect with before the dream ends. <br>
-    If they also pick you, Match15 will connect you automatically.
+<h4 class="subheader">
+    Choose up to 15 seniors you want to meet up with before the dream ends.
 </h4>
-<form name="choiceForm">
+<accordion>
+    <accordion-group heading="How it works" is-open="status.showRules">
+        Choose up to 15 Stanford seniors you would've liked to get to know more over these years.
+        Feel free to choose people in hopes to find love, lust and friendship.
+        If you both choose each other, then Match15 will connect you through an email!
 
+        <h4>Can't find who you are looking for?</h4>
+        Make sure you begin typing their official name, no nick names unfortunately
+    </accordion-group>
+</accordion>
 
-    <div class="field">
-        <div class="alert alert-danger" role="alert" ng-if="choiceForm.choice0.$error.atStanford">
-            {{choiceForm.choice0.$viewValue}} doesnt even go here yo
+<form name="choiceForm" ng-hide="alreadySubmitted">
+
+    <div class="field" ng-repeat="choice in choicesLust">
+        <div class="alert alert-danger" role="alert" ng-if="choiceForm[choice].$error.atStanford">
+            {{choiceForm[choice].$viewValue}} doesnt even go here
         </div>
-        <input class="form-control" name="choice0"  ng-model="choice1" autocomplete="off"
-               placeholder="future friend" ng-model-options="{updateOn: 'default blur', debounce: { default: 900, blur: 0 }}"
-                typeahead-wait-ms="400" type="text" typeahead="name as name.name for name in namesEmails | filter:$viewValue | limitTo:8" do-you-even-go-here>
+        <div class="alert alert-danger" role="alert" ng-if="choiceForm[choice].$error.noDoubles">
+            Can't choose {{choiceForm[choice].$viewValue}} more than once
+        </div>
+        <input class="form-control" name="{{choice}}"  ng-model="user[choice]" autocomplete="off"
+               placeholder="future lover" ng-model-options="{updateOn: 'default blur', debounce: { default: 900, blur: 0 }}"
+               typeahead-wait-ms="300" type="text" typeahead="name as name.name for name in namesEmails | filter:$viewValue:startsWith | limitTo:8" do-you-even-go-here no-doubles>
+    </div>
 
+    <div class="field" ng-repeat="choice in choicesFriends">
+        <div class="alert alert-danger" role="alert" ng-if="choiceForm[choice].$error.atStanford">
+            {{choiceForm[choice].$viewValue}} doesnt even go here
+        </div>
+        <div class="alert alert-danger" role="alert" ng-if="choiceForm[choice].$error.noDoubles">
+            Can't choose {{choiceForm[choice].$viewValue}} more than once
+        </div>
+        <input class="form-control" name="{{choice}}"  ng-model="user[choice]" autocomplete="off"
+               placeholder="future friend" ng-model-options="{updateOn: 'default blur', debounce: { default: 900, blur: 0 }}"
+               typeahead-wait-ms="300" type="text" typeahead="name as name.name for name in namesEmails | filter:$viewValue:startsWith | limitTo:8" do-you-even-go-here no-doubles>
     </div>
 
 
-    <input class="btn btn-primary btn-lg submit-button" ng-disabled="choiceForm.$invalid" data-ng-click="submitChoices()" type="button" value="Matchmaker make me a match" />
+
+
+    <input class="btn btn-primary btn-lg submit-button" ng-disabled="choiceForm.$invalid" data-ng-click="submitChoices()" type="button" value="Find me a match" />
 </form>
 
+<div ng-show="alreadySubmitted" class="jumbotron">
 
+    You already submitted homeslice, its match 15 not 30!
+</div>
 
