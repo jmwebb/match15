@@ -13,6 +13,12 @@ angular.module('myApp')
     $scope.choicesFriends = [ 'choice10', 'choice11', 'choice12', 'choice13', 'choice14'];
 
     $scope.loggedIn = false;
+
+
+        $scope.userName = $('#userName').text();
+        $scope.userEmail = $('#userEmail').text();
+
+
         // ------- load user -------//
 
         //
@@ -28,7 +34,7 @@ angular.module('myApp')
         //
     $scope.login = function() {
         //var email = 'maria';
-        var user_ref = new Firebase(FIREBASE_URL + '/' + $scope.fakename);
+        var user_ref = new Firebase(FIREBASE_URL + '/' + $scope.userEmail);
         $scope.user = $firebaseObject(user_ref);
         
 
