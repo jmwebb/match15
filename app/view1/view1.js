@@ -12,31 +12,29 @@ angular.module('myApp')
 
     $scope.choicesFriends = [ 'choice10', 'choice11', 'choice12', 'choice13', 'choice14'];
 
-    $scope.loggedIn = false;
+    //$scope.loggedIn = false;
 
 
-        $scope.userName = $('#userName').text();
-        $scope.userEmail = $('#userEmail').text();
 
 
-        // ------- load user -------//
 
-        //
-        //var ref = new Firebase(FIREBASE_URL);
-        //$scope.authObj = $firebaseAuth(ref);
-        //
-        //
-        //$scope.authObj.$authWithOAuthPopup("google").then(function(authData) {
-        //  console.log("Logged in as:", authData.uid);
-        //}).catch(function(error) {
-        //  console.error("Authentication failed:", error);
-        //});
-        //
-    $scope.login = function() {
-        //var email = 'maria';
-        var user_ref = new Firebase(FIREBASE_URL + '/' + $scope.userEmail);
+
+    $scope.loadUser = function() {
+        var userName = $('#userName').text();
+        var userEmail = $('#userEmail').text();
+
+        if(typeof(userEmail) == 'undefined'
+            || userEmail.indexOf('@') == -1) {    // if invalid email, use a preferred email on file
+
+            $scope.namesEmails.forEach(function(user) {
+               if(user.name.toLowerCase() == userName.toLowerCase()) {
+                   userEmail = user.email;
+               }
+            });
+        }
+
+        var user_ref = new Firebase(FIREBASE_URL + '/' + userEmail);
         $scope.user = $firebaseObject(user_ref);
-        
 
 
         // ----------- Checking if user has already submitted preferences -------------//
@@ -142,6 +140,7 @@ angular.module('myApp')
     suids = suid_array.join(',');
     var noSUID = namesWithoutSUIDS.join(', ');
     $scope.namesEmails = names_emails;
+    $scope.loadUser();
   });
 
   $scope.capitalizeEveryWord = function(string) {

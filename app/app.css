@@ -86,3 +86,11 @@
 .jumbotron .choice {
   text-align: left;
 }
+
+#userName {
+  display: none;
+}
+
+#userEmail {
+  display: none;
+}

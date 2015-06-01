@@ -6,16 +6,16 @@
 <h4 class="subheader">
     Choose up to 15 seniors you want to meet up with before the dream ends.
 </h4>
-<div ng-hide="loggedIn">
-    <input class="form-control" placeholder="fake login for testing only" ng-model="fakename">
-    <button type="button" class="btn btn-primary" ng-click="login()" >
-        Login
-    </button>
-</div>
+<!--<div ng-hide="loggedIn">-->
+    <!--<input class="form-control" placeholder="fake login for testing only" ng-model="fakename">-->
+    <!--<button type="button" class="btn btn-primary" ng-click="login()" >-->
+        <!--Login-->
+    <!--</button>-->
+<!--</div>-->
 
 
 
-<accordion ng-hide="!loggedIn">
+<accordion>
     <accordion-group heading="How it works" is-open="status.showRules">
         Choose up to 15 Stanford seniors you would've liked to get to know more over these years.
         Feel free to choose people in hopes to find love, lust and friendship.
@@ -35,7 +35,7 @@
 
 
 
-<form name="choiceForm" ng-hide="alreadySubmitted || justSubmitted || !loggedIn">
+<form name="choiceForm" ng-hide="alreadySubmitted || justSubmitted">
 
     <h3>Hi, {{username}}</h3>
 
