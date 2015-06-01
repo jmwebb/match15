@@ -16,13 +16,15 @@ angular.module('myApp').directive('noDoubles', function() {
                 }
 
                 var noDoubles = true;
-                if(typeof(value.email) !== 'undefined') {
+                if(typeof(value.email) != 'undefined') {
                     var track_doubles = {};
-                    angular.forEach($scope.user, function(value, key) {
-                        if (track_doubles[value.email]){
+                    angular.forEach($scope.user, function(user, key) {
+                        if (value == "" || typeof(user) == 'undefined' || typeof(user.email) == 'undefined') {
+                            // dont count invalid submissions
+                        } else if (track_doubles[user.email]){
                             noDoubles = false;
                         } else {
-                            track_doubles[value.email] = "recorded";
+                            track_doubles[user.email] = "recorded";
                         }
                     });
                 }
