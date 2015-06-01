@@ -12,28 +12,25 @@ angular.module('myApp')
 
     $scope.choicesFriends = [ 'choice10', 'choice11', 'choice12', 'choice13', 'choice14'];
 
-    //$scope.loggedIn = false;
-
-
 
 
 
 
     $scope.loadUser = function() {
+
         var userName = $('#userName').text();
         var userEmail = $('#userEmail').text();
-
-        if(typeof(userEmail) == 'undefined'
-            || userEmail.indexOf('@') == -1) {    // if invalid email, use a preferred email on file
-
             $scope.namesEmails.forEach(function(user) {
-               if(user.name.toLowerCase() == userName.toLowerCase()) {
-                   userEmail = user.email;
+               if(userName.toLowerCase().indexOf(user.name.toLowerCase()) > -1) {                   // check name first as it is guaranteed by WebAuth
+                   $scope.userEmail = user.email;
+                   $scope.userName = user.name;
+               } else if(userEmail.toLowerCase().indexOf(user.email.toLowerCase()) > -1) {          // check email if there is a discrepancy in name
+                   $scope.userEmail = user.email;
+                   $scope.userName = user.name;
                }
             });
-        }
 
-        var user_ref = new Firebase(FIREBASE_URL + '/' + userEmail);
+        var user_ref = new Firebase(FIREBASE_URL + '/' + $scope.userEmail);
         $scope.user = $firebaseObject(user_ref);
 
 

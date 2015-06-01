@@ -37,7 +37,7 @@
 
 <form name="choiceForm" ng-hide="alreadySubmitted || justSubmitted">
 
-    <h3>Hi, {{username}}</h3>
+    <h3 class="subheader">Hi {{userName}}, submit your choices below</h3>
 
     <div class="field" ng-repeat="choice in choicesLust">
         <div class="alert alert-danger" role="alert" ng-if="choiceForm[choice].$error.atStanford && choiceForm[choice].$touched">
