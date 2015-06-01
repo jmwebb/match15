@@ -1,2 +1,5 @@
 AuthType WebAuth
 require privgroup ~sseira:match15
+WebAuthLdapAttribute displayName
+WebAuthLdapAttribute suUnivid
+WebAuthLdapAttribute mail
