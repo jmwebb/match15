@@ -15,22 +15,23 @@ angular.module('myApp')
 
 
 
-
     $scope.loadUser = function() {
 
         var userName = $('#userName').text();
         var userEmail = $('#userEmail').text();
-            $scope.namesEmails.forEach(function(user) {
-               if(userName.toLowerCase().indexOf(user.name.toLowerCase()) > -1) {                   // check name first as it is guaranteed by WebAuth
-                   $scope.userEmail = user.email;
-                   $scope.userName = user.name;
-               } else if(userEmail.toLowerCase().indexOf(user.email.toLowerCase()) > -1) {          // check email if there is a discrepancy in name
-                   $scope.userEmail = user.email;
-                   $scope.userName = user.name;
-               }
-            });
+        $scope.namesEmails.forEach(function(user) {
+            if(userName.toLowerCase().indexOf(user.name.toLowerCase()) > -1) {                   // check name first as it is guaranteed by WebAuth
+                $scope.userEmail = user.email;
+                $scope.userName = user.name;
+            } else if(userEmail.toLowerCase().indexOf(user.email.toLowerCase()) > -1) {          // check email if there is a discrepancy in name
+                $scope.userEmail = user.email;
+                $scope.userName = user.name;
+            }
+        });
 
-        var user_ref = new Firebase(FIREBASE_URL + '/' + $scope.userEmail);
+        // split name into firstmMiddleLast
+        // eliminate any . .", "#", "$", "[", or "]".git
+        var user_ref = new Firebase(FIREBASE_URL + '/' + $scope.userName.replace(/\W/g, ''));
         $scope.user = $firebaseObject(user_ref);
 
 

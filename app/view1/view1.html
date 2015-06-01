@@ -4,7 +4,7 @@
 </h1>
 
 <h4 class="subheader">
-    Choose up to 15 seniors you want to meet up with before the dream ends.
+    Hi {{userName}}, choose up to 15 seniors you want to meet up with before the dream ends.
 </h4>
 <!--<div ng-hide="loggedIn">-->
     <!--<input class="form-control" placeholder="fake login for testing only" ng-model="fakename">-->
@@ -36,8 +36,6 @@
 
 
 <form name="choiceForm" ng-hide="alreadySubmitted || justSubmitted">
-
-    <h3 class="subheader">Hi {{userName}}, submit your choices below</h3>
 
     <div class="field" ng-repeat="choice in choicesLust">
         <div class="alert alert-danger" role="alert" ng-if="choiceForm[choice].$error.atStanford && choiceForm[choice].$touched">
