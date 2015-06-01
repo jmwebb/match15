@@ -6,7 +6,16 @@
 <h4 class="subheader">
     Choose up to 15 seniors you want to meet up with before the dream ends.
 </h4>
-<accordion>
+<div ng-hide="loggedIn">
+    <input class="form-control" placeholder="fake login for testing only" ng-model="username">
+    <button type="button" class="btn btn-primary" ng-click="login()" >
+        Login
+    </button>
+</div>
+
+
+
+<accordion ng-hide="!loggedIn">
     <accordion-group heading="How it works" is-open="status.showRules">
         Choose up to 15 Stanford seniors you would've liked to get to know more over these years.
         Feel free to choose people in hopes to find love, lust and friendship.
@@ -19,21 +28,26 @@
 
 
         <h4>Can't find who you are looking for?</h4>
-        Make sure you begin typing their official name, no nick names unfortunately
+        Try typing their last name.
+        Stanford severs don't contain nick names unfortunately
     </accordion-group>
 </accordion>
 
-<form name="choiceForm" ng-hide="alreadySubmitted || justSubmitted">
+
+
+<form name="choiceForm" ng-hide="alreadySubmitted || justSubmitted || !loggedIn">
+
+    <h3>Hi, {{username}}</h3>
 
     <div class="field" ng-repeat="choice in choicesLust">
-        <div class="alert alert-danger" role="alert" ng-if="choiceForm[choice].$error.atStanford">
+        <div class="alert alert-danger" role="alert" ng-if="choiceForm[choice].$error.atStanford && choiceForm[choice].$touched">
             {{choiceForm[choice].$viewValue}} doesnt even go here
         </div>
-        <div class="alert alert-danger" role="alert" ng-if="choiceForm[choice].$error.noDoubles">
+        <div class="alert alert-danger" role="alert" ng-if="choiceForm[choice].$error.noDoubles && choiceForm[choice].$touched">
             Can't choose {{choiceForm[choice].$viewValue}} more than once
         </div>
         <input class="form-control" name="{{choice}}"  ng-model="user[choice]" autocomplete="off"
-               placeholder="future lover" ng-model-options="{updateOn: 'default blur', debounce: { default: 100, blur: 0 }}"
+               placeholder="old crush" ng-model-options="{updateOn: 'default blur', debounce: { default: 100, blur: 0 }}"
                type="text" typeahead="name as name.name for name in namesEmails | filter:$viewValue:startsWith | limitTo:8" do-you-even-go-here no-doubles>
     </div>
 

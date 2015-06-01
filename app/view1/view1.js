@@ -12,7 +12,7 @@ angular.module('myApp')
 
     $scope.choicesFriends = [ 'choice10', 'choice11', 'choice12', 'choice13', 'choice14'];
 
-
+    $scope.loggedIn = false;
         // ------- load user -------//
 
         //
@@ -26,27 +26,31 @@ angular.module('myApp')
         //  console.error("Authentication failed:", error);
         //});
         //
+    $scope.login = function() {
+        //var email = 'maria';
+        var user_ref = new Firebase(FIREBASE_URL + '/' + $scope.username);
+        $scope.user = $firebaseObject(user_ref);
+        
 
 
-    var email = 'maria';
-    var user_ref = new Firebase(FIREBASE_URL + '/' + email);
-    $scope.user = $firebaseObject(user_ref);
+        // ----------- Checking if user has already submitted preferences -------------//
+        $scope.user.$loaded().then(function() {
+            if ($scope.user['submited']) {
+                $scope.alreadySubmitted = true;
+                $scope.submittedChoices = [];
+                angular.forEach($scope.user, function(value, key) {
+                    if (typeof(value.name) != 'undefined') {
+                        $scope.submittedChoices.push(value.name);
+                    }
+                });
+            } else {
+                $scope.alreadySubmitted = false;
+                $scope.loggedIn = true;
+            }
+        });
+    };
 
 
-    // ----------- Checking if user has already submitted preferences -------------//
-    $scope.user.$loaded().then(function() {
-        if ($scope.user['submited']) {
-            $scope.alreadySubmitted = true;
-            $scope.submittedChoices = [];
-            angular.forEach($scope.user, function(value, key) {
-                if (typeof(value.name) != 'undefined') {
-                    $scope.submittedChoices.push(value.name);
-                }
-            });
-        } else {
-            $scope.alreadySubmitted = false;
-        }
-    });
 
 
     // -------submit choices ---------//
