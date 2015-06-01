@@ -10,17 +10,22 @@ angular.module('myApp').directive('noDoubles', function() {
         require : 'ngModel',
         link : function($scope, element, attrs, ngModel) {
             ngModel.$validators.noDoubles = function(value) {
+                if (typeof(value) == "undefined"
+                    || value == "") {
+                    return true;
+                }
 
-               var noDoubles = true;
-
-                var track_doubles = {};
-                angular.forEach($scope.user, function(value, key) {
-                    if (track_doubles[value.email]){
-                        noDoubles = false;
-                    } else {
-                        track_doubles[value.email] = "recorded";
-                    }
-                });
+                var noDoubles = true;
+                if(typeof(value.email) !== 'undefined') {
+                    var track_doubles = {};
+                    angular.forEach($scope.user, function(value, key) {
+                        if (track_doubles[value.email]){
+                            noDoubles = false;
+                        } else {
+                            track_doubles[value.email] = "recorded";
+                        }
+                    });
+                }
 
                 return noDoubles;
             };

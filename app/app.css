@@ -72,22 +72,17 @@
   font-weight: bold;
 }
 
-::-webkit-input-placeholder {
-  color: whitesmoke;
-  font-weight: normal;
+.jumbotron {
+  border-radius: 6px;
+  padding: 30px 15px !important;
 }
 
-:-moz-placeholder { /* Firefox 18- */
-  color: whitesmoke;
-  font-weight: normal;
+.jumbotron h3 {
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 20px;
 }
 
-::-moz-placeholder {  /* Firefox 19+ */
-  color: whitesmoke;
-  font-weight: normal;
-}
-
-:-ms-input-placeholder {
-  color: whitesmoke;
-  font-weight: normal;
+.jumbotron .choice {
+  text-align: left;
 }

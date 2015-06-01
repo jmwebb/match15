@@ -11,13 +11,19 @@
         Choose up to 15 Stanford seniors you would've liked to get to know more over these years.
         Feel free to choose people in hopes to find love, lust and friendship.
         If you both choose each other, then Match15 will connect you through an email!
+        <br>        <br>
+
+
+        Choose wisely though, you can't update your choices after submitting
+        <br>                       <br>
+
 
         <h4>Can't find who you are looking for?</h4>
         Make sure you begin typing their official name, no nick names unfortunately
     </accordion-group>
 </accordion>
 
-<form name="choiceForm" ng-hide="alreadySubmitted">
+<form name="choiceForm" ng-hide="alreadySubmitted || justSubmitted">
 
     <div class="field" ng-repeat="choice in choicesLust">
         <div class="alert alert-danger" role="alert" ng-if="choiceForm[choice].$error.atStanford">
@@ -27,8 +33,8 @@
             Can't choose {{choiceForm[choice].$viewValue}} more than once
         </div>
         <input class="form-control" name="{{choice}}"  ng-model="user[choice]" autocomplete="off"
-               placeholder="future lover" ng-model-options="{updateOn: 'default blur', debounce: { default: 900, blur: 0 }}"
-               typeahead-wait-ms="300" type="text" typeahead="name as name.name for name in namesEmails | filter:$viewValue:startsWith | limitTo:8" do-you-even-go-here no-doubles>
+               placeholder="future lover" ng-model-options="{updateOn: 'default blur', debounce: { default: 100, blur: 0 }}"
+               type="text" typeahead="name as name.name for name in namesEmails | filter:$viewValue:startsWith | limitTo:8" do-you-even-go-here no-doubles>
     </div>
 
     <div class="field" ng-repeat="choice in choicesFriends">
@@ -39,18 +45,41 @@
             Can't choose {{choiceForm[choice].$viewValue}} more than once
         </div>
         <input class="form-control" name="{{choice}}"  ng-model="user[choice]" autocomplete="off"
-               placeholder="future friend" ng-model-options="{updateOn: 'default blur', debounce: { default: 900, blur: 0 }}"
-               typeahead-wait-ms="300" type="text" typeahead="name as name.name for name in namesEmails | filter:$viewValue:startsWith | limitTo:8" do-you-even-go-here no-doubles>
+               placeholder="future friend" ng-model-options="{updateOn: 'default blur', debounce: { default: 100, blur: 0 }}"
+               type="text" typeahead="name as name.name for name in namesEmails | filter:$viewValue:startsWith | limitTo:8" do-you-even-go-here no-doubles>
     </div>
 
-
-
-
-    <input class="btn btn-primary btn-lg submit-button" ng-disabled="choiceForm.$invalid" data-ng-click="submitChoices()" type="button" value="Find me a match" />
+    <input class="btn btn-primary btn-lg submit-button" ng-disabled="choiceForm.$invalid" data-ng-click="open()" type="button" value="Find me a match" />
 </form>
 
-<div ng-show="alreadySubmitted" class="jumbotron">
+<div ng-show="alreadySubmitted || justSubmitted" class="jumbotron">
 
-    You already submitted homeslice, its match 15 not 30!
+    <h3 ng-show="alreadySubmitted">Looks like you already submitted your choices, its match 15 not 30!</h3>
+    <h3 ng-show="justSubmitted">Thanks for submitting your choices. Hope you kill the game.</h3>
+
+    <ul>
+        <li class="submitted-choices" ng-repeat="choice in submittedChoices">
+            <p class="choice">{{choice}}</p>
+        </li>
+    </ul>
+
 </div>
 
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Confirm your choices</h3>
+    </div>
+    <div class="modal-body">
+        <ul>
+            <li class="submitted-choices" ng-repeat="choice in submittedChoices">
+                <p class="choice">{{choice}}</p>
+            </li>
+        </ul>
+        <p>Good luck ;)</p>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Go back</button>
+    </div>
+</script>

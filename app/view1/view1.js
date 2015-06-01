@@ -7,54 +7,85 @@ angular.module('myApp')
 
 .controller('View1Ctrl', function($scope, $http, $firebaseObject, $firebaseAuth, importNames, FIREBASE_URL, $modal) {
 
-        $scope.showRules = false;
+    $scope.showRules = false;
+    $scope.choicesLust = ['choice0', 'choice1', 'choice2', 'choice3', 'choice4', 'choice5', 'choice6', 'choice7', 'choice8', 'choice9'];
+
+    $scope.choicesFriends = [ 'choice10', 'choice11', 'choice12', 'choice13', 'choice14'];
 
 
-      //
-      //var ref = new Firebase(FIREBASE_URL);
-      //$scope.authObj = $firebaseAuth(ref);
-      //
-      //
-      //$scope.authObj.$authWithOAuthPopup("google").then(function(authData) {
-      //  console.log("Logged in as:", authData.uid);
-      //}).catch(function(error) {
-      //  console.error("Authentication failed:", error);
-      //});
-      //
+        // ------- load user -------//
+
+        //
+        //var ref = new Firebase(FIREBASE_URL);
+        //$scope.authObj = $firebaseAuth(ref);
+        //
+        //
+        //$scope.authObj.$authWithOAuthPopup("google").then(function(authData) {
+        //  console.log("Logged in as:", authData.uid);
+        //}).catch(function(error) {
+        //  console.error("Authentication failed:", error);
+        //});
+        //
 
 
+    var email = 'maria';
+    var user_ref = new Firebase(FIREBASE_URL + '/' + email);
+    $scope.user = $firebaseObject(user_ref);
 
 
-      var email = 'maria';
-      var user_ref = new Firebase(FIREBASE_URL + '/' + email);
-      $scope.user = $firebaseObject(user_ref);
-      $scope.user.$loaded().then(function() {
+    // ----------- Checking if user has already submitted preferences -------------//
+    $scope.user.$loaded().then(function() {
         if ($scope.user['submited']) {
-          $scope.alreadySubmitted = true;
+            $scope.alreadySubmitted = true;
+            $scope.submittedChoices = [];
+            angular.forEach($scope.user, function(value, key) {
+                if (typeof(value.name) != 'undefined') {
+                    $scope.submittedChoices.push(value.name);
+                }
+            });
         } else {
-          $scope.alreadySubmitted = false;
+            $scope.alreadySubmitted = false;
         }
-      });
+    });
 
 
-      $scope.choicesLust = ['choice0', 'choice1', 'choice2', 'choice3', 'choice4', 'choice5', 'choice6', 'choice7', 'choice8', 'choice9'];
+    // -------submit choices ---------//
+    $scope.open = function () {
+        var modalInstance = $modal.open({
+            animation: true,
+            templateUrl: 'myModalContent.html',
+            controller: 'ModalInstanceCtrl',
+            resolve: {
+                user: function () {
+                    return $scope.user;
+                }
+            }
+        });
 
-      $scope.choicesFriends = [ 'choice10', 'choice11', 'choice12', 'choice13', 'choice14'];
+        modalInstance.result.then(function (choices) {
+            $scope.submittedChoices = choices;
+            $scope.submitChoices();
+            $scope.justSubmitted = true;
+        }, function () {
+            // called on dismiss
+        });
 
+    };
 
   $scope.submitChoices = function () {
     $scope.user['submited'] = true;
     $scope.user.$save().then(function(ref) {
-      //ref.key() === $scope.user.$id; // true
+        //$scope.open();
     }, function(error) {
       console.log("Error:", error);
     });
+
   };
 
 
 
 
-
+// -----------------  typeahead methods ----------------------------- //
   importNames.get().success(function(response) {
     var name_emailJSON = response;
     var names_emails = [];
@@ -114,8 +145,6 @@ angular.module('myApp')
       return arr.join(" ");
   };
 
-
-
   $scope.startsWith = function(string, viewValue) {
     if (typeof(string) == 'string') {
       var words = string.split(" ");
@@ -126,10 +155,27 @@ angular.module('myApp')
           startsWith = true;
         }
       });
-
       return startsWith;
     }
-
   };
 
-});
+})
+
+.controller('ModalInstanceCtrl', function ($scope, $modalInstance, user) {
+
+        $scope.user = user;
+        $scope.submittedChoices = [];
+        angular.forEach($scope.user, function(value, key) {
+            if (typeof(value.name) != 'undefined') {
+                $scope.submittedChoices.push(value.name);
+            }
+        });
+
+        $scope.ok = function () {
+            $modalInstance.close($scope.submittedChoices);
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    });

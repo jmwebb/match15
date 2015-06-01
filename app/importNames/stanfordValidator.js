@@ -25,12 +25,11 @@ angular.module('myApp').directive('doYouEvenGoHere', function() {
                 } else {                // user input, string submitted
                     $scope.namesEmails.forEach(function(name_email) {
                         var name =  value.toString().toLowerCase();
-                        if (name_email.name.toLowerCase().indexOf(name) > -1) {
+                        if (name_email.name.toLowerCase() == name) { //} .indexOf(name) > -1) {
                             isValid =  true;
                         }
                     });
                 }
-
                 return isValid;
             };
         }
