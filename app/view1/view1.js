@@ -31,9 +31,9 @@ angular.module('myApp')
 
         // split name into firstmMiddleLast
         // eliminate any . .", "#", "$", "[", or "]".git
-        //var user_ref = new Firebase(FIREBASE_URL + '/' + $scope.userName.replace(/\W/g, ''));
+        var user_ref = new Firebase(FIREBASE_URL + '/' + $scope.userName.replace(/\W/g, ''));
 
-        var user_ref = new Firebase(FIREBASE_URL + '/sdf');        // for development
+        //var user_ref = new Firebase(FIREBASE_URL + '/sdf');        // for development
 
         $scope.user = $firebaseObject(user_ref);
 

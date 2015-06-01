@@ -21,7 +21,7 @@ angular.module('myApp').directive('noDoubles', function() {
                     angular.forEach($scope.user, function(user, key) {
                         if (value == "" || typeof(user) == 'undefined' || typeof(user.email) == 'undefined') {
                             // dont count invalid submissions
-                        } else if (track_doubles[user.email]){
+                        } else if (user.email == value.email && track_doubles[user.email]){
                             noDoubles = false;
                         } else {
                             track_doubles[user.email] = "recorded";
