@@ -28,7 +28,7 @@ angular.module('myApp')
         //
     $scope.login = function() {
         //var email = 'maria';
-        var user_ref = new Firebase(FIREBASE_URL + '/' + $scope.username);
+        var user_ref = new Firebase(FIREBASE_URL + '/' + $scope.fakename);
         $scope.user = $firebaseObject(user_ref);
         
 

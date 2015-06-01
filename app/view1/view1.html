@@ -7,7 +7,7 @@
     Choose up to 15 seniors you want to meet up with before the dream ends.
 </h4>
 <div ng-hide="loggedIn">
-    <input class="form-control" placeholder="fake login for testing only" ng-model="username">
+    <input class="form-control" placeholder="fake login for testing only" ng-model="fakename">
     <button type="button" class="btn btn-primary" ng-click="login()" >
         Login
     </button>
@@ -77,6 +77,13 @@
         </li>
     </ul>
 
+</div>
+
+<div ng-model="userName">
+    <!--#echo var="WEBAUTH_LDAP_DISPLAYNAME" -->
+</div>
+<div ng-model="userEmail">
+    <!--#echo var="WEBAUTH_LDAP_SUUNIVID” -->
 </div>
 
 <script type="text/ng-template" id="myModalContent.html">
