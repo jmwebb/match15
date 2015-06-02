@@ -17,8 +17,7 @@ angular.module('myApp')
 
     $scope.loadUser = function() {
 
-        //var userName = $('#userName').text();
-        var userName = 'Santiago Seira Silva-herzog';
+        var userName = $('#userName').text();
         var userEmail = $('#userEmail').text();
         $scope.namesEmails.forEach(function(user) {
             if(userName.toLowerCase().indexOf(user.name.toLowerCase()) > -1) {                   // check name first as it is guaranteed by WebAuth
@@ -33,9 +32,9 @@ angular.module('myApp')
         $scope.firstName =  $scope.userName.split(' ')[0];
         // split name into firstmMiddleLast
         // eliminate any . .", "#", "$", "[", or "]".git
-        //var user_ref = new Firebase(FIREBASE_URL + '/' + $scope.userName.replace(/\W/g, ''));
+        var user_ref = new Firebase(FIREBASE_URL + '/' + $scope.userName.replace(/\W/g, ''));
 
-        var user_ref = new Firebase(FIREBASE_URL + '/sdfasd');        // for development
+        //var user_ref = new Firebase(FIREBASE_URL + '/sdfasd');        // for development
 
         $scope.user = $firebaseObject(user_ref);
 
