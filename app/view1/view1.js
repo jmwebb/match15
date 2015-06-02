@@ -73,6 +73,13 @@ angular.module('myApp')
 
     $scope.submitChoices = function () {
         $scope.user['submited'] = true;
+        angular.forEach($scope.user, function(value, key) {
+            if(value == "") {
+                delete $scope.user[key];
+            }
+        });
+
+
         $scope.user.$save().then(function(ref) {
             //$scope.open();
         }, function(error) {
