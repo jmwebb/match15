@@ -1,35 +1,35 @@
 <div class="stanford-header">
     <h1 class="header">
-        <span class="red">Match15</span>: Seniors looking to make up for lost time
+        <span class="red">Match15:</span>: Seniors looking for Seniors
     </h1>
 </div>
 <h4 class="subheader">
-    Hi {{userName}}, choose up to 15 seniors you want to meet up with before the dream ends.
+    Hi {{firstName}}, submit up to 15 seniors you would like to get to know better.
+    <br> If you match, you have two weeks before graduation to kick things off!
+
 </h4>
-<!--<div ng-hide="loggedIn">-->
-    <!--<input class="form-control" placeholder="fake login for testing only" ng-model="fakename">-->
-    <!--<button type="button" class="btn btn-primary" ng-click="login()" >-->
-        <!--Login-->
-    <!--</button>-->
-<!--</div>-->
-
-
 
 <accordion>
     <accordion-group heading="How it works" is-open="status.showRules">
-        Choose up to 15 Stanford seniors you would've liked to get to know more over these years.
-        Feel free to choose people in hopes to find love, lust and friendship.
-        If you both choose each other, then Match15 will connect you through an email!
+        Choose up to 15 Stanford seniors you still want to get to know, whether it’s for love, lust, or friendship--maybe you’ll get lucky and find all three!
+        <br>
+        If you both choose each other, then Match15 will connect you through an email.
+        <br>
+        So go ahead, reach out to your crush and that funny kid you wish you hung out with more, chances are it’s mutual.
+
         <br>        <br>
 
-
         Choose wisely though, you can't update your choices after submitting
+        <br>
+        Submissions are due Thursday, June 4th at midnight and matches will be released Friday afternoon.
         <br>                       <br>
 
 
         <h4>Can't find who you are looking for?</h4>
-        Try typing their last name.
-        Stanford severs don't contain nicknames, unfortunately
+        Try typing in their last name.
+        Stanford servers don't recognize nicknames unfortunately
+
+        <br>Contact us at <a href="mailto:phenri@stanford.edu?Subject=Match15%20questions" target="_top">phenri@stanford.edu</a>
     </accordion-group>
 </accordion>
 
@@ -45,7 +45,7 @@
             Can't choose {{choiceForm[choice].$viewValue}} more than once
         </div>
         <input class="form-control" name="{{choice}}"  ng-model="user[choice]" autocomplete="off"
-               placeholder="old crush" ng-model-options="{updateOn: 'default blur', debounce: { default: 100, blur: 0 }}"
+               placeholder="crush" ng-model-options="{updateOn: 'default blur', debounce: { default: 100, blur: 0 }}"
                type="text" typeahead="name as name.name for name in namesEmails | filter:$viewValue:startsWith | limitTo:8" do-you-even-go-here no-doubles>
     </div>
 
