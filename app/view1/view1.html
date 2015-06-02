@@ -1,35 +1,40 @@
 <div class="stanford-header">
     <h1 class="header">
-        <span class="red">Match15:</span>: Seniors looking for Seniors
+        <span class="red">Match15:</span> Seniors looking for Seniors
     </h1>
 </div>
 <h4 class="subheader">
     Hi {{firstName}}, submit up to 15 seniors you would like to get to know better.
-    <br> If you match, you have two weeks before graduation to kick things off!
+    <br> Whether it’s for love, lust, or friendship, you will have one week before graduation to kick things off!
 
 </h4>
 
 <accordion>
-    <accordion-group heading="How it works" is-open="status.showRules">
+    <accordion-group heading="How it works" is-open="showRules">
         Choose up to 15 Stanford seniors you still want to get to know, whether it’s for love, lust, or friendship--maybe you’ll get lucky and find all three!
         <br>
+        <ul>
+            <li>Choose as many or as few seniors as you like</li>
+            <li>Choose seniors of any gender</li>
+            <li>Choose seniors you already know, you want to get to know, you have a crush on, or you find interesting</li>
+            <li>You do you</li>
+        </ul>
         If you both choose each other, then Match15 will connect you through an email.
         <br>
-        So go ahead, reach out to your crush and that funny kid you wish you hung out with more, chances are it’s mutual.
-
-        <br>        <br>
-
-        Choose wisely though, you can't update your choices after submitting
+        So go ahead and reach out, chances are it’s mutual.
         <br>
-        Submissions are due Thursday, June 4th at midnight and matches will be released Friday afternoon.
-        <br>                       <br>
-
-
+        <br>
+        Choose wisely though, you <b>can't update your choices after submitting</b>.
+        <br>
+        Submissions are due <b>Thursday, June 4th at 11:57 pm</b> and matches will be released sometime on <b>Sunday, June 7th</b>.
+        <br>
+        <br>
         <h4>Can't find who you are looking for?</h4>
-        Try typing in their last name.
-        Stanford servers don't recognize nicknames unfortunately
+        Try typing in their <b>last name</b>.
+        <br>
+        Stanford servers don't recognize nicknames unfortunately.
 
-        <br>Contact us at <a href="mailto:phenri@stanford.edu?Subject=Match15%20questions" target="_top">phenri@stanford.edu</a>
+        <br>Contact us at <a href="mailto:stanfordmatch15@gmail.com?Subject=Match15%20questions" target="_top">stanfordmatch15@gmail.com</a>
     </accordion-group>
 </accordion>
 
@@ -45,7 +50,7 @@
             Can't choose {{choiceForm[choice].$viewValue}} more than once
         </div>
         <input class="form-control" name="{{choice}}"  ng-model="user[choice]" autocomplete="off"
-               placeholder="crush" ng-model-options="{updateOn: 'default blur', debounce: { default: 100, blur: 0 }}"
+               ng-model-options="{updateOn: 'default blur', debounce: { default: 100, blur: 0 }}"
                type="text" typeahead="name as name.name for name in namesEmails | filter:$viewValue:startsWith | limitTo:8" do-you-even-go-here no-doubles>
     </div>
 
@@ -57,7 +62,7 @@
             Can't choose {{choiceForm[choice].$viewValue}} more than once
         </div>
         <input class="form-control" name="{{choice}}"  ng-model="user[choice]" autocomplete="off"
-               placeholder="future friend" ng-model-options="{updateOn: 'default blur', debounce: { default: 100, blur: 0 }}"
+               ng-model-options="{updateOn: 'default blur', debounce: { default: 100, blur: 0 }}"
                type="text" typeahead="name as name.name for name in namesEmails | filter:$viewValue:startsWith | limitTo:8" do-you-even-go-here no-doubles>
     </div>
 

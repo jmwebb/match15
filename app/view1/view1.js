@@ -7,7 +7,7 @@ angular.module('myApp')
 
 .controller('View1Ctrl', function($scope, $http, $firebaseObject, $firebaseAuth, importNames, FIREBASE_URL, $modal) {
 
-    $scope.showRules = false;
+    $scope.showRules = true;
     $scope.choicesLust = ['choice0', 'choice1', 'choice2', 'choice3', 'choice4', 'choice5', 'choice6', 'choice7', 'choice8', 'choice9'];
 
     $scope.choicesFriends = [ 'choice10', 'choice11', 'choice12', 'choice13', 'choice14'];
