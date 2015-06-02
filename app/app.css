@@ -104,3 +104,7 @@
 .red {
   color: #d9534f;
 }
+
+.submit-button {
+  margin-bottom: 30px !important;
+}
