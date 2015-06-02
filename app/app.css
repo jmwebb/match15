@@ -55,6 +55,7 @@
 
 .header {
   text-align: center;
+  padding: 15px 20px;
 }
 .subheader {
   text-align: center;
@@ -93,4 +94,13 @@
 
 #userEmail {
   display: none;
+}
+
+.stanford-header {
+  background: url(images/stanford_panorama_small.png) 50% 0 no-repeat fixed;
+  height: 250px;
+}
+
+.red {
+  color: #d9534f;
 }

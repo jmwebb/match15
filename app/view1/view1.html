@@ -1,8 +1,8 @@
-
-<h1 class="header">
-    Match15: Seniors looking to make up for lost time
-</h1>
-
+<div class="stanford-header">
+    <h1 class="header">
+        <span class="red">Match15</span>: Seniors looking to make up for lost time
+    </h1>
+</div>
 <h4 class="subheader">
     Hi {{userName}}, choose up to 15 seniors you want to meet up with before the dream ends.
 </h4>
@@ -61,7 +61,7 @@
                type="text" typeahead="name as name.name for name in namesEmails | filter:$viewValue:startsWith | limitTo:8" do-you-even-go-here no-doubles>
     </div>
 
-    <input class="btn btn-primary btn-lg submit-button" ng-disabled="choiceForm.$invalid" data-ng-click="open()" type="button" value="Find me a match" />
+    <input class="btn btn-danger btn-lg submit-button" ng-disabled="choiceForm.$invalid" data-ng-click="open()" type="button" value="Find me a match" />
 </form>
 
 <div ng-show="alreadySubmitted || justSubmitted" class="jumbotron">
@@ -94,11 +94,11 @@
                 <p class="choice">{{choice}}</p>
             </li>
         </ul>
-        <p>Good luck ;)</p>
+        <p>Remember, you may only submit once <br> Good luck ;)</p>
     </div>
 
     <div class="modal-footer">
         <button class="btn btn-warning" ng-click="cancel()">Go back</button>
-        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-danger" ng-click="ok()">OK</button>
     </div>
 </script>
