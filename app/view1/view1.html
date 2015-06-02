@@ -42,23 +42,11 @@
 
 <form name="choiceForm" ng-hide="alreadySubmitted || justSubmitted">
 
-    <div class="field" ng-repeat="choice in choicesLust">
+    <div class="field" ng-repeat="choice in choices">
         <div class="alert alert-danger" role="alert" ng-if="choiceForm[choice].$error.atStanford && choiceForm[choice].$touched">
             {{choiceForm[choice].$viewValue}} doesnt even go here
         </div>
         <div class="alert alert-danger" role="alert" ng-if="choiceForm[choice].$error.noDoubles && choiceForm[choice].$touched">
-            Can't choose {{choiceForm[choice].$viewValue}} more than once
-        </div>
-        <input class="form-control" name="{{choice}}"  ng-model="user[choice]" autocomplete="off"
-               ng-model-options="{updateOn: 'default blur', debounce: { default: 100, blur: 0 }}"
-               type="text" typeahead="name as name.name for name in namesEmails | filter:$viewValue:startsWith | limitTo:8" do-you-even-go-here no-doubles>
-    </div>
-
-    <div class="field" ng-repeat="choice in choicesFriends">
-        <div class="alert alert-danger" role="alert" ng-if="choiceForm[choice].$error.atStanford">
-            {{choiceForm[choice].$viewValue}} doesnt even go here
-        </div>
-        <div class="alert alert-danger" role="alert" ng-if="choiceForm[choice].$error.noDoubles">
             Can't choose {{choiceForm[choice].$viewValue}} more than once
         </div>
         <input class="form-control" name="{{choice}}"  ng-model="user[choice]" autocomplete="off"
