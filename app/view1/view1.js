@@ -33,7 +33,7 @@ angular.module('myApp')
         // eliminate any . .", "#", "$", "[", or "]".git
         var user_ref = new Firebase(FIREBASE_URL + '/' + $scope.userName.replace(/\W/g, ''));
 
-        //var user_ref = new Firebase(FIREBASE_URL + '/sdf');        // for development
+        //var user_ref = new Firebase(FIREBASE_URL + '/sdfasd');        // for development
 
         $scope.user = $firebaseObject(user_ref);
 
@@ -165,6 +165,11 @@ angular.module('myApp')
           startsWith = true;
         }
       });
+
+    if(string.toLowerCase().indexOf(viewValue.toLowerCase()) > -1){
+        startsWith = true;
+    }
+
       return startsWith;
     }
   };
